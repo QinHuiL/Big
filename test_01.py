@@ -1,9 +1,11 @@
 # coding: utf-8
 from selenium import webdriver
-from time import sleep
+import selenium.webdriver.chrome.service as service
 
-driver = webdriver.Chrome(chromedriver)
-chromedriver = "/usr/local/Cellar/chromedriver/2.33/bin"
-driver.get("https://www.baidu.com")
-sleep(3)
-driver.quiet()
+service = service.Service('/usr/local/Cellar/chromedriver/2.33/bin')
+service.start()
+capabilities = {'chrome.binary': '/Applications/Google Chrome.app/Contents/MacOS'}
+driver = webdriver.Remote(service.service_url, capabilities)
+driver.get('http://www.google.com/xhtml');
+time.sleep(5) # Let the user actually see something!
+driver.quit()
